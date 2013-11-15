@@ -53,6 +53,7 @@ public class Assignment2Setup {
 
 		s3 = new AmazonS3Client(credentials);
 		S3BucketManager s3Manager = new S3BucketManager(s3, S3_BUCKET);
+		s3Manager.createBucket();
 		File file = new File("C:/Users/Abhinav/Downloads/video_test.mp4");		
 		// S3 task
 		s3Manager.putOject("videokey", file);

@@ -13,7 +13,6 @@ public class S3BucketManager {
 	{
 		this.s3 = s3Instance;
 		this.bucket_name = bucketName;
-		createBucket();
 	}
 
 	public void createBucket()
