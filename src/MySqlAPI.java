@@ -3,7 +3,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +55,22 @@ public class MySqlAPI {
 			close();
 		}
 	}
+	
+	public VideoVO getEntry(String name)
+	{
+		try {
+			createConnectionAndStatement();
+			String insertSql = "select * from VIDEO_INFO where name='" + name +"'";
+			resultSet  = statement.executeQuery(insertSql);
+			List<VideoVO> list = parseResultSet(resultSet);
+			return list.get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return null;
+	}
 
 	public void insertEntry(VideoVO vo)
 	{
@@ -64,6 +79,21 @@ public class MySqlAPI {
 			String insertSql = "INSERT INTO VIDEO_INFO VALUES ('" + vo.getName() +"','"+ vo.getTs()+
 					"','"+vo.getS3link()+"','"+vo.getCflink()+"',"+vo.getRating()+ ", "+vo.getTotalvotes()+" )";
 			statement.executeUpdate(insertSql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+	
+	public void addVote(String name)
+	{
+		try {
+			createConnectionAndStatement();
+			VideoVO vo = getEntry(name);
+			int votes = vo.getTotalvotes();
+			votes = votes+1;
+			updateTotalVotes(name, votes);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -83,18 +113,33 @@ public class MySqlAPI {
 			close();
 		}
 	}
-
-	public void readAll()
+	
+	public void updateTotalVotes(String name, int votes)
 	{
 		try {
 			createConnectionAndStatement();
-			resultSet = statement.executeQuery(selectAll);
-			parseResultSet(resultSet);
+			String updateSql = "UPDATE VIDEO_INFO SET totalvotes=" + votes +"  where name='" + name + "'";
+			statement.executeUpdate(updateSql);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
+	}
+
+	public List<VideoVO> readAll()
+	{
+		List<VideoVO> list = new ArrayList<VideoVO>();
+		try {
+			createConnectionAndStatement();
+			resultSet = statement.executeQuery(selectAll);
+			list =  parseResultSet(resultSet);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
 	}
 
 	public void createConnectionAndStatement()
@@ -141,18 +186,6 @@ public class MySqlAPI {
 		}
 
 	}
-
-	/*private void writeMetaData(ResultSet resultSet) throws SQLException {
-		//   Now get some metadata from the database
-		// Result set get the result of the SQL query
-
-		System.out.println("The columns in the table are: ");
-
-		System.out.println("Table: " + resultSet.getMetaData().getTableName(1));
-		for  (int i = 1; i<= resultSet.getMetaData().getColumnCount(); i++){
-			System.out.println("Column " +i  + " "+ resultSet.getMetaData().getColumnName(i));
-		}
-	}*/
 
 	private List<VideoVO> parseResultSet(ResultSet resultSet) throws SQLException {
 		// ResultSet is initially before the first data set

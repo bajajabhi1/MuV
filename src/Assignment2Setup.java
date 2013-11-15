@@ -1,5 +1,5 @@
-import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.PropertiesCredentials;
@@ -53,21 +53,38 @@ public class Assignment2Setup {
 
 		s3 = new AmazonS3Client(credentials);
 		S3BucketManager s3Manager = new S3BucketManager(s3, S3_BUCKET);
-		s3Manager.createBucket();
-		File file = new File("C:/Users/Abhinav/Downloads/video_test.mp4");		
+		//s3Manager.createBucket();
+		//File file = new File("C:/Users/Abhinav/Downloads/video_test.mp4");		
 		// S3 task
-		s3Manager.putOject("videokey", file);
+		//s3Manager.putOject("videokey", file);
 
 		//s3Manager.deleteObject("key");
 		//s3Manager.deleteBucket();		
-		createCloudFront(credentials);
+		//createCloudFront(credentials);
 		rdsClient = new AmazonRDSClient(credentials);
 		RDSManager rdsMgr = new RDSManager(rdsClient);
-		rdsMgr.createRDSSecurityGroup();
-		String rdsEP  = rdsMgr.createRDS();
+		//rdsMgr.createRDSSecurityGroup();
+		//String rdsEP  = rdsMgr.createRDS();
 		// Use the rds end point and connect to DB and create table
-		MySqlAPI mysql = new MySqlAPI(rdsEP);
-		mysql.createTable();
+		MySqlAPI mysql = new MySqlAPI("ab3900mysql.cqckbcnhwa3e.us-east-1.rds.amazonaws.com");
+		//mysql.dropTable();
+		//mysql.createTable();
+		//mysql.readAll();
+		VideoVO vo = new VideoVO("videokey", new Timestamp(System.currentTimeMillis()), "S3_LINK", "CF_LINK", 1, 4);
+		mysql.insertEntry(vo);
+		//mysql.addVote("videokey");
+		//mysql.readAll();
+		
+		// Update rating  code
+		VideoVO vo2 = mysql.getEntry("videokey");
+		int currRating = vo2.getRating();
+		int currVotes = vo2.getTotalvotes();
+		int addRating = 5;
+		int newRating = Math.round(((currRating * currVotes) +  addRating)/ (float)(++currVotes));
+		mysql.updateRating("videokey", newRating);
+		mysql.addVote("videokey");
+		mysql.readAll();
+		
 	}
 
 	public static void createCloudFront(AWSCredentials credentials)
