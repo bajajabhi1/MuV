@@ -1,0 +1,123 @@
+/*
+* multi-line comment
+*/
+
+input {
+background:#09C;
+color:#fff;
+font-family: Tahoma, Geneva, sans-serif;
+-webkit-border-radius: 15px;
+-moz-border-radius: 15px;
+border-radius: 15px;
+border: 1p solid #999;
+}
+
+
+input:hover {
+background:#fff;
+color:#09C;
+}
+
+p{ line-height: 1em; }
+
+h1, h2, h3, h4{
+    color: orange;
+	font-weight: normal;
+	line-height: 1.1em;
+	margin: 0 0 .5em 0;
+}
+
+h1{ font-size: 2em; }
+h2{ font-size: 1.5em; }
+
+a{
+	color: black;
+	text-decoration: none;
+}
+
+	a:hover,
+	a:active{ text-decoration: underline; }
+
+/* you can structure your code's white space so that it is as readable for when you come back in the future or for other people to read and edit quickly */
+
+body{
+    font-family: arial; font-size: 80%; line-height: 1.2em; width: 100%; height: 100%; margin: 0; background: #eee;
+    font-weight: normal;
+}
+
+/* you can but your code all in one line like above */
+#page{ margin: 20px; }
+
+/* or on different lines like below */
+#logo{
+	width: 35%;
+	margin-top: 5px;
+	font-family: georgia;
+	display: inline-block;
+}
+/* but try and be as consist possible */
+#nav{
+	width: 60%;
+	display: inline-block;
+	text-align: right;
+	float: right;
+}
+	#nav ul{}
+		#nav ul li{
+			display: inline-block;
+			height: 62px;
+		}
+			#nav ul li a{
+				padding: 20px;
+				/*background: orange;*/
+				color: white;
+			}
+			/*#nav ul li a:hover{
+				background-color: #ffb424;
+				box-shadow: 0px 1px 1px #666;
+			}*/
+			#nav ul li a:active{ background-color: #ff8f00; }
+				/*#nav ul li.red a{
+					background-color: red;
+				}
+				#nav ul li.orange a{
+					background-color: orange;
+				}
+				#nav ul li.blue a{
+					background-color: blue;
+				}
+				#nav ul li.yellow a{
+					background-color: yellow;
+				}*/
+				
+#content{
+	margin: 30px 0;
+	padding: 20px;
+	clear: both;
+}
+#tb{
+	margin: 30px 0;
+	padding: 20px;
+	clear: both;
+}
+
+a.button {
+   display: -moz-inline-stack;
+   display: inline-block;
+   width: 100px;
+   height: 37px;
+   background: url("http://dabuttonfactory.com/b.png?t=Upload&f=Komika&ts=21&tc=ffffff00&tshs=1&tshc=22222200&it=png&c=5&bgt=gradient&bgc=47c&ebgc=238&hp=20&vp=11") no-repeat;
+   line-height: 37px;
+   vertical-align: text-middle;
+   text-align: center;
+   color: #ffffff;
+   font-family: Komika;
+   font-size: 21px;
+   font-weight: normal;
+   font-style: normal;
+   text-shadow: #222222 1px 1px 0;
+}
+a.button > span {
+   display: -moz-inline-block;
+}
+

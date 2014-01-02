@@ -1,0 +1,75 @@
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<script>
+function bigImg(x)
+{
+x.style.height="80px";
+x.style.width="80px";
+}
+
+function linkNormalImg(x)
+{
+x.style.height="60px";
+x.style.width="60px";
+}
+</script>
+</head>
+<title>MuV Player</title>	
+<body style="background: #eee;">
+<table width="100%"><tr>
+<div id="logo">
+		<h1>
+			<font color="black">Welcome to MuV - My Movie</font>
+		</h1>
+	</div>
+	<div id="nav">
+		<ul>
+			<li class="red"><a href="/MuV/list">
+			<img onmouseover="bigImg(this)" onmouseout="linkNormalImg(this)" title="Home"  src="https://s3.amazonaws.com/edu.columbia.ms.cse.2013.ab3900/home.png" height="60" width="60">
+			</a></li>
+		</ul>
+	</div>
+		
+	</tr>
+	<tr height="100%">
+				<td width="100%" height="100%">	
+<font color="black">
+
+<p>As part of our assignments in the course of Cloud Computing, we created our own version of a video streaming and sharing application and host it on the cloud. Further, we implemented a basic rating system for the videos and display videos in order of these ratings.</p> 
+ 
+<p>Here's a few details about what the functionalities the web application provides:</p>
+<p>LIST OF VIDEOS:<br/>
+The main lists all available videos from the Amazon S3 bucket.
+ </p>
+<p>
+UPLOAD:<br/>
+When user chooses to upload a new video, it is stored using an Amazon S3 bucket.
+If a file other than compatible video files are uploaded, it throws an error message.
+There is an option to delete the videos.
+ </p>
+
+<p>VIDEO STREAMING:<br/>
+The users can watch the videos on the browser. The videos stored in Amazon S3 bucket are distributed using CloudFront, which is the content distribution server provided by Amazon.
+ </p>
+ <p>RATING:<br/>
+The Amazon RDS database is used to store details about the video: name, uploaded timestamp and a cumulative rating (ie, they should be updated and averaged everytime a user rates it). These ratings are updated everytime a new user rates it. 
+ </p><p>
+Videos are listed in the order of ratings everytime the page is refreshed.</p>
+
+<p> 
+It uses the below Amazon services - <br/>
+1. S3 bucket  - http://aws.amazon.com/s3/<br/>
+2. EC2 instance that hosts the application - http://aws.amazon.com/ec2/<br/>
+3. Cloudfront Distribution Services - http://aws.amazon.com/cloudfront/<br/>
+4. RDS database - http://aws.amazon.com/rds/</p>
+ </font>
+ </td>
+</tr>
+</table>
+
+<div align="center" style = "clear: both; position: absolute;  z-index: 5; height: 3em; bottom:0; background-color: cyan; width:100%;">
+  <p>Site by: Abhinav Bajaj (<a href="mailto:ab3900@columbia.edu">ab3900@columbia.edu</a>) & Ajay Reddy (<a href="mailto:ac3647@columbia.edu">ac3647@columbia.edu</a>)</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>MuV</display-name>
+  <welcome-file-list>
+    <welcome-file>list</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>FileUploadServlet</servlet-name>
+    <servlet-class>tube.FileUploadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ListServlet</servlet-name>
+    <servlet-class>tube.ListServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RatingServlet</servlet-name>
+    <servlet-class>tube.RatingServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteVideoServlet</servlet-name>
+    <servlet-class>tube.DeleteVideoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileUploadServlet</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ListServlet</servlet-name>
+    <url-pattern>/list</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RatingServlet</servlet-name>
+    <url-pattern>/rating</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteVideoServlet</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+</web-app>
